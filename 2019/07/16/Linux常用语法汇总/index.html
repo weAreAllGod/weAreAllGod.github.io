@@ -56,12 +56,17 @@
 
       
         <h2 id="文件处理语法"><a href="#文件处理语法" class="headerlink" title="文件处理语法"></a>文件处理语法</h2><p>cd——切换到指定的目录下，跟windos是一样的<br></p>
-<h2 id="程序部署语法"><a href="#程序部署语法" class="headerlink" title="程序部署语法"></a>程序部署语法</h2><p>java -jar xx.jar   ————运行jar包<br><br>sudo nohup &amp; 程序   ————xshell退出后继续运行<br>sudo fuser -k -n tcp 80 ——————强制杀死某个端口的进程</p>
-
+<h2 id="程序部署语法"><a href="#程序部署语法" class="headerlink" title="程序部署语法"></a>程序部署语法</h2><pre><code>java -jar xx.jar   ————运行jar包&lt;br&gt;
+sudo nohup &amp; 程序   ————xshell退出后继续运行
+sudo fuser -k -n tcp 80 ——————强制杀死某个端口的进程
+nohup java -jar xxx.jar &gt;soringboot.log 2&gt;&amp;1&amp;
+————没有写入权限的文件夹重新定向
+netstat –apn
+————查看所有的进程及端口号</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/16/Linux常用语法汇总/" data-id="cjy60x5lz00011wt8ykzrg0qa"
+      <a data-url="http://yoursite.com/2019/07/16/Linux常用语法汇总/" data-id="cjy6n27ar0000rst8iaxfuwzc"
          class="article-share-link">分享</a>
       
     </footer>
