@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    springBoot读取静态文件打包后资源加载报错问题 |
+    
+    铁血军</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-springBoot读取静态文件打包后资源加载报错问题" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      springBoot读取静态文件打包后资源加载报错问题
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/07/19/springBoot读取静态文件打包后资源加载报错问题/" class="article-date">
+  <time datetime="2019-07-19T10:26:39.000Z" itemprop="datePublished">2019-07-19</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h2 id="springBoot打包静态文件报错问题"><a href="#springBoot打包静态文件报错问题" class="headerlink" title="springBoot打包静态文件报错问题"></a>springBoot打包静态文件报错问题</h2><p>springBoot读取本地文件，比如txt,png等资源，发现打包之后总会有错误。<br><br>由于对shringBoot的marven打包机制没有深入的研究过，所以这里提供一个网上行得通的办法。<br><br>首先将你的资源丢到resources下面。<br>在读取数据的时候用下面的方法读：<br>:smile</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Txtoperation txtoperation=<span class="keyword">new</span> Txtoperation();</span><br><span class="line">InputStream inputStream =txtoperation.getClass().getClassLoader().getResourceAsStream(<span class="string">"gateinfo.txt"</span>);</span><br><span class="line">BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(inputStream));</span><br></pre></td></tr></table></figure>
+
+<p>然后就ok了！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/19/springBoot读取静态文件打包后资源加载报错问题/" data-id="cjy9zd3y4000224t8l3xms3qj"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/07/16/Linux常用语法汇总/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Linux常用语法汇总</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
