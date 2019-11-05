@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    mySql常用语法汇总 |
+    
+    铁血军</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-mySql常用语法汇总" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mySql常用语法汇总
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/05/mySql常用语法汇总/" class="article-date">
+  <time datetime="2019-11-05T08:03:08.000Z" itemprop="datePublished">2019-11-05</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="mySql常用语法汇总"><a href="#mySql常用语法汇总" class="headerlink" title="mySql常用语法汇总"></a>mySql常用语法汇总</h1><h2 id="数据转换类"><a href="#数据转换类" class="headerlink" title="数据转换类"></a>数据转换类</h2><h3 id="1、字符串转化为时间"><a href="#1、字符串转化为时间" class="headerlink" title="1、字符串转化为时间"></a>1、字符串转化为时间</h3><pre><code>str_to_date(str,formate)
+
+SELECT STR_TO_DATE(arrv_dt,&quot;%Y-%m-%d %H:%I:%s&quot;) from xml_flight_info</code></pre><h2 id="操作类"><a href="#操作类" class="headerlink" title="操作类"></a>操作类</h2><h3 id="1、将筛选信息导入新建的表"><a href="#1、将筛选信息导入新建的表" class="headerlink" title="1、将筛选信息导入新建的表"></a>1、将筛选信息导入新建的表</h3><pre><code>&lt;!-- 不同于sqlserver这里没有直接into的操作，应用create语法创建新表从而将筛选的数据导入新的表中。 --&gt;
+CREATE TABLE xml_flight_info_backUp (select * from   xml_flight_info WHERE  LENGTH(arrv_dt)=19)</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/05/mySql常用语法汇总/" data-id="ck2ll67lq0003u4t8gr4851i8"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/08/02/anoconda创建虚拟环境/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">anoconda创建虚拟环境</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
