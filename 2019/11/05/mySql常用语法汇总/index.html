@@ -55,14 +55,17 @@
       
 
       
-        <h1 id="mySql常用语法汇总"><a href="#mySql常用语法汇总" class="headerlink" title="mySql常用语法汇总"></a>mySql常用语法汇总</h1><h2 id="数据转换类"><a href="#数据转换类" class="headerlink" title="数据转换类"></a>数据转换类</h2><h3 id="1、字符串转化为时间"><a href="#1、字符串转化为时间" class="headerlink" title="1、字符串转化为时间"></a>1、字符串转化为时间</h3><pre><code>str_to_date(str,formate)
+        <h1 id="mySql常用语法汇总"><a href="#mySql常用语法汇总" class="headerlink" title="mySql常用语法汇总"></a>mySql常用语法汇总</h1><h2 id="数据转换类"><a href="#数据转换类" class="headerlink" title="数据转换类"></a>数据转换类</h2><hr>
+<h3 id="1、字符串转化为时间"><a href="#1、字符串转化为时间" class="headerlink" title="1、字符串转化为时间"></a>1、字符串转化为时间</h3><pre><code>str_to_date(str,formate)
 
-SELECT STR_TO_DATE(arrv_dt,&quot;%Y-%m-%d %H:%I:%s&quot;) from xml_flight_info</code></pre><h2 id="操作类"><a href="#操作类" class="headerlink" title="操作类"></a>操作类</h2><h3 id="1、将筛选信息导入新建的表"><a href="#1、将筛选信息导入新建的表" class="headerlink" title="1、将筛选信息导入新建的表"></a>1、将筛选信息导入新建的表</h3><pre><code>&lt;!-- 不同于sqlserver这里没有直接into的操作，应用create语法创建新表从而将筛选的数据导入新的表中。 --&gt;
-CREATE TABLE xml_flight_info_backUp (select * from   xml_flight_info WHERE  LENGTH(arrv_dt)=19)</code></pre>
+SELECT STR_TO_DATE(arrv_dt,&quot;%Y-%m-%d %H:%I:%s&quot;) from xml_flight_info</code></pre><hr>
+<h2 id="操作类"><a href="#操作类" class="headerlink" title="操作类"></a>操作类</h2><h3 id="1、将筛选信息导入新建的表"><a href="#1、将筛选信息导入新建的表" class="headerlink" title="1、将筛选信息导入新建的表"></a>1、将筛选信息导入新建的表</h3><p>不同于sqlserver这里没有直接into的操作，应用create语法创建新表从而将筛选的数据导入新的表中。<br>    CREATE TABLE xml_flight_info_backUp (select * from   xml_flight_info WHERE  LENGTH(arrv_dt)=19)</p>
+<h3 id="2、手动调整数据类型注意事项"><a href="#2、手动调整数据类型注意事项" class="headerlink" title="2、手动调整数据类型注意事项"></a>2、手动调整数据类型注意事项</h3><h5 id="varchar类型调整为date类型"><a href="#varchar类型调整为date类型" class="headerlink" title="varchar类型调整为date类型"></a>varchar类型调整为date类型</h5><p>对于形如“2019-01-01 00：00：00” 和“2019/01/01 00：00：00”的varchar类型的“准日期”类型，一般在不编程或者写sql语句的情况下可以直接调整表结构进行修改。<br><br>但是有时候修改会出现这种错误，比如：<br><br><img src="./images/mySql%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/1.png" alt><br><br>这时候要注意长度和小数点的位数，修改后如下：<br><img src="./images/mySql%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/2.png" alt><br></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/05/mySql常用语法汇总/" data-id="ck2ll67lq0003u4t8gr4851i8"
+      <a data-url="http://yoursite.com/2019/11/05/mySql常用语法汇总/" data-id="ck2lohgo20005mgt8590du352"
          class="article-share-link">分享</a>
       
     </footer>
