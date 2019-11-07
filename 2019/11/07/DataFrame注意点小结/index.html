@@ -78,11 +78,14 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outOfHere=arriveData.loc[(arriveData[<span class="string">"dep_cty_chn_nm"</span>]==<span class="string">"昆明"</span>)&amp;(arriveData.dpt_dt.notnull())]</span><br></pre></td></tr></table></figure>
 
 <p><b>成功！</b><br><img src="./images/DataFrame%E6%B3%A8%E6%84%8F%E7%82%B9%E5%B0%8F%E7%BB%93/2.png" alt></p>
+<h3 id="3、排序之后重新索引"><a href="#3、排序之后重新索引" class="headerlink" title="3、排序之后重新索引"></a>3、排序之后重新索引</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outTime=outOfHere.sort_values(by=<span class="string">"dpt_dt"</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="./images/DataFrame%E6%B3%A8%E6%84%8F%E7%82%B9%E5%B0%8F%E7%BB%93/3.png" alt></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/07/DataFrame注意点小结/" data-id="ck2o4t4kp0002k0t8qej8uzb4"
+      <a data-url="http://yoursite.com/2019/11/07/DataFrame注意点小结/" data-id="ck2oe1qix00001st88spvgia7"
          class="article-share-link">分享</a>
       
     </footer>
@@ -92,6 +95,15 @@
   
     
   <nav class="article-nav">
+    
+      <a href="/2019/11/07/python中的时间问题/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            python中的时间问题
+          
+        </div>
+      </a>
     
     
       <a href="/2019/11/05/mySql常用语法汇总/" class="article-nav-link">

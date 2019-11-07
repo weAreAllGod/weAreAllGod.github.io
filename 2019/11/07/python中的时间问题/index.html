@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    python中的时间问题 |
+    
+    铁血军</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-python中的时间问题" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      python中的时间问题
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/07/python中的时间问题/" class="article-date">
+  <time datetime="2019-11-07T07:21:02.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h2 id="python中的时间应用问题"><a href="#python中的时间应用问题" class="headerlink" title="python中的时间应用问题"></a>python中的时间应用问题</h2><h3 id="1、字符串转时间戳"><a href="#1、字符串转时间戳" class="headerlink" title="1、字符串转时间戳"></a>1、字符串转时间戳</h3><p>本人认为这是最好用也是最长用的转化方式，推荐下面的用法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A=pd.Timestamp(<span class="string">"2019-01-01 12:00:00"</span>)-pd.Timestamp(<span class="string">"2019-01-01 11:00:00"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>配合DataFrame的apply()使用，感觉更好</p>
+<h3 id="2、时间戳相减化为秒"><a href="#2、时间戳相减化为秒" class="headerlink" title="2、时间戳相减化为秒"></a>2、时间戳相减化为秒</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A.total_seconds()</span><br><span class="line">A.days <span class="comment">#获取天</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/07/python中的时间问题/" data-id="ck2oe1qji00071st8r1vjvgwo"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/11/07/DataFrame注意点小结/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">DataFrame注意点小结</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
