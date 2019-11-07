@@ -56,16 +56,18 @@
 
       
         <h1 id="mySql常用语法汇总"><a href="#mySql常用语法汇总" class="headerlink" title="mySql常用语法汇总"></a>mySql常用语法汇总</h1><h2 id="数据转换类"><a href="#数据转换类" class="headerlink" title="数据转换类"></a>数据转换类</h2><hr>
-<h3 id="1、字符串转化为时间"><a href="#1、字符串转化为时间" class="headerlink" title="1、字符串转化为时间"></a>1、字符串转化为时间</h3><pre><code>str_to_date(str,formate)
+<h3 id="1、字符串转化为时间"><a href="#1、字符串转化为时间" class="headerlink" title="1、字符串转化为时间"></a>1、字符串转化为时间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str_to_date(str,formate)</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">STR_TO_DATE</span>(arrv_dt,<span class="string">"%Y-%m-%d %H:%I:%s"</span>) <span class="keyword">from</span> xml_flight_info</span><br></pre></td></tr></table></figure>
 
-SELECT STR_TO_DATE(arrv_dt,&quot;%Y-%m-%d %H:%I:%s&quot;) from xml_flight_info</code></pre><hr>
+<hr>
 <h2 id="操作类"><a href="#操作类" class="headerlink" title="操作类"></a>操作类</h2><h3 id="1、将筛选信息导入新建的表"><a href="#1、将筛选信息导入新建的表" class="headerlink" title="1、将筛选信息导入新建的表"></a>1、将筛选信息导入新建的表</h3><p>不同于sqlserver这里没有直接into的操作，应用create语法创建新表从而将筛选的数据导入新的表中。</p>
-<pre><code>CREATE TABLE xml_flight_info_backUp (select * from   xml_flight_info WHERE  LENGTH(arrv_dt)=19)</code></pre><h3 id="2、手动调整数据类型注意事项"><a href="#2、手动调整数据类型注意事项" class="headerlink" title="2、手动调整数据类型注意事项"></a>2、手动调整数据类型注意事项</h3><h5 id="varchar类型调整为date类型"><a href="#varchar类型调整为date类型" class="headerlink" title="varchar类型调整为date类型"></a>varchar类型调整为date类型</h5><p>对于形如“2019-01-01 00：00：00” 和“2019/01/01 00：00：00”的varchar类型的“准日期”类型，一般在不编程或者写sql语句的情况下可以直接调整表结构进行修改。<br><br>但是有时候修改会出现这种错误，比如：<br><br><img src="./images/mySql%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/1.png" alt><br><br>这时候要注意长度和小数点的位数，修改后如下：<br><img src="./images/mySql%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/2.png" alt><br></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> xml_flight_info_backUp (<span class="keyword">select</span> * <span class="keyword">from</span>   xml_flight_info <span class="keyword">WHERE</span>  <span class="keyword">LENGTH</span>(arrv_dt)=<span class="number">19</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、手动调整数据类型注意事项"><a href="#2、手动调整数据类型注意事项" class="headerlink" title="2、手动调整数据类型注意事项"></a>2、手动调整数据类型注意事项</h3><h5 id="varchar类型调整为date类型"><a href="#varchar类型调整为date类型" class="headerlink" title="varchar类型调整为date类型"></a>varchar类型调整为date类型</h5><p>对于形如“2019-01-01 00：00：00” 和“2019/01/01 00：00：00”的varchar类型的“准日期”类型，一般在不编程或者写sql语句的情况下可以直接调整表结构进行修改。<br><br>但是有时候修改会出现这种错误，比如：<br><br><img src="./images/mySql%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/1.png" alt><br><br>这时候要注意长度和小数点的位数，修改后如下：<br><img src="./images/mySql%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%B1%87%E6%80%BB/2.png" alt><br></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/11/05/mySql常用语法汇总/" data-id="ck2o0wsx9000598t85ep6ijq0"
+      <a data-url="http://yoursite.com/2019/11/05/mySql常用语法汇总/" data-id="ck2o1by81000640t86jn2bfrh"
          class="article-share-link">分享</a>
       
     </footer>
@@ -75,6 +77,15 @@ SELECT STR_TO_DATE(arrv_dt,&quot;%Y-%m-%d %H:%I:%s&quot;) from xml_flight_info</
   
     
   <nav class="article-nav">
+    
+      <a href="/2019/11/07/DataFrame注意点小结/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            DataFrame注意点小结
+          
+        </div>
+      </a>
     
     
       <a href="/2019/08/02/anoconda创建虚拟环境/" class="article-nav-link">

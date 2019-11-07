@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    DataFrame注意点小结 |
+    
+    铁血军</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/technology.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <section class="outer">
+  <article id="post-DataFrame注意点小结" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      DataFrame注意点小结
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/2019/11/07/DataFrame注意点小结/" class="article-date">
+  <time datetime="2019-11-07T01:27:06.000Z" itemprop="datePublished">2019-11-07</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h2 id="DataFrame易用与易错点总结"><a href="#DataFrame易用与易错点总结" class="headerlink" title="DataFrame易用与易错点总结"></a>DataFrame易用与易错点总结</h2><h3 id="1、apply-函数的应用"><a href="#1、apply-函数的应用" class="headerlink" title="1、apply()函数的应用"></a>1、apply()函数的应用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">filterComeAndGo</span><span class="params">(line)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> line[<span class="string">"dep_cty_chn_nm"</span>]==<span class="string">"昆明"</span>:</span><br><span class="line">        <span class="keyword">return</span> line[<span class="string">"dpt_dt"</span>]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span>  line[<span class="string">"arrv_dt"</span>]</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    arriveData=service.getData(<span class="string">"arraveData"</span>,startTime=<span class="string">"2018-01-01 00:00:00"</span>,endTime=<span class="string">"2018-01-02 00:00:00"</span>)</span><br><span class="line">    <span class="comment"># myColumns=arriveData.columns.to_list()</span></span><br><span class="line">    <span class="comment"># myColumns.append("timeFromHere")</span></span><br><span class="line">    <span class="comment"># arriveData.columns=myColumns</span></span><br><span class="line">    <span class="comment"># arriveData["timeFromHere"] =pd.Series([None for i in range(arriveData.shape[0])])</span></span><br><span class="line">    arriveData[<span class="string">"timeFromHere"</span>]=arriveData.apply(filterComeAndGo,axis = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p><b>注意点</b>：apply可以应用于一个DataFrame对象，也可以应用于一个Series对象，对于处理函数而言，都是将这部分的数据作为一个迭代器逐一的进行迭代处理。但是这个过程中需要注意一个参数，就是axis.对于Series而言是没有这个参数的,因为一定是行方向的逐一迭代。但是对于DataFrame的数据类型，就要注意是在行方向的逐一计算还是列方向的逐一计算，下面附上官网的例子<br><br><b><i>DataFrame中的apply的应用</i></b></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.DataFrame([[<span class="number">4</span>, <span class="number">9</span>]] * <span class="number">3</span>, columns=[<span class="string">'A'</span>, <span class="string">'B'</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df</span><br><span class="line">   A  B</span><br><span class="line"><span class="number">0</span>  <span class="number">4</span>  <span class="number">9</span></span><br><span class="line"><span class="number">1</span>  <span class="number">4</span>  <span class="number">9</span></span><br><span class="line"><span class="number">2</span>  <span class="number">4</span>  <span class="number">9</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.apply(np.sqrt)</span><br><span class="line">     A    B</span><br><span class="line"><span class="number">0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.apply(np.sum, axis=<span class="number">0</span>)</span><br><span class="line">A    <span class="number">12</span></span><br><span class="line">B    <span class="number">27</span></span><br><span class="line">dtype: int64</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.apply(np.sum, axis=<span class="number">1</span>)</span><br><span class="line"><span class="number">0</span>    <span class="number">13</span></span><br><span class="line"><span class="number">1</span>    <span class="number">13</span></span><br><span class="line"><span class="number">2</span>    <span class="number">13</span></span><br><span class="line">dtype: int64</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.apply(<span class="keyword">lambda</span> x: [<span class="number">1</span>, <span class="number">2</span>], axis=<span class="number">1</span>)</span><br><span class="line"><span class="number">0</span>    [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="number">1</span>    [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"><span class="number">2</span>    [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">dtype: object</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.apply(<span class="keyword">lambda</span> x: [<span class="number">1</span>, <span class="number">2</span>], axis=<span class="number">1</span>, result_type=<span class="string">'expand'</span>)</span><br><span class="line">   <span class="number">0</span>  <span class="number">1</span></span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">2</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.apply(<span class="keyword">lambda</span> x: pd.Series([<span class="number">1</span>, <span class="number">2</span>], index=[<span class="string">'foo'</span>, <span class="string">'bar'</span>]), axis=<span class="number">1</span>)</span><br><span class="line">   foo  bar</span><br><span class="line"><span class="number">0</span>    <span class="number">1</span>    <span class="number">2</span></span><br><span class="line"><span class="number">1</span>    <span class="number">1</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2</span>    <span class="number">1</span>    <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.apply(<span class="keyword">lambda</span> x: [<span class="number">1</span>, <span class="number">2</span>], axis=<span class="number">1</span>, result_type=<span class="string">'broadcast'</span>)</span><br><span class="line">   A  B</span><br><span class="line"><span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">1</span>  <span class="number">1</span>  <span class="number">2</span></span><br><span class="line"><span class="number">2</span>  <span class="number">1</span>  <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>附上官方文档地址：<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply" target="_blank" rel="noopener">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html#pandas.DataFrame.apply</a><br></p>
+<p><b><i>Series中的apply的应用</i></b></p>
+<pre><code class="python"><span class="meta">&gt;&gt;&gt; </span>s = pd.Series([<span class="number">20</span>, <span class="number">21</span>, <span class="number">12</span>],
+<span class="meta">... </span>              index=[<span class="string">'London'</span>, <span class="string">'New York'</span>, <span class="string">'Helsinki'</span>])
+<span class="meta">&gt;&gt;&gt; </span>s
+London      <span class="number">20</span>
+New York    <span class="number">21</span>
+Helsinki    <span class="number">12</span>
+dtype: int64
+
+<span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">square</span><span class="params">(x)</span>:</span>
+<span class="meta">... </span>    <span class="keyword">return</span> x ** <span class="number">2</span>
+<span class="meta">&gt;&gt;&gt; </span>s.apply(square)
+London      <span class="number">400</span>
+New York    <span class="number">441</span>
+Helsinki    <span class="number">144</span>
+dtype: int64
+
+<span class="meta">&gt;&gt;&gt; </span>s.apply(<span class="keyword">lambda</span> x: x ** <span class="number">2</span>)
+London      <span class="number">400</span>
+New York    <span class="number">441</span>
+Helsinki    <span class="number">144</span>
+dtype: int64
+
+<span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">subtract_custom_value</span><span class="params">(x, custom_value)</span>:</span>
+<span class="meta">... </span>    <span class="keyword">return</span> x - custom_value
+
+<span class="meta">&gt;&gt;&gt; </span>s.apply(subtract_custom_value, args=(<span class="number">5</span>,))
+London      <span class="number">15</span>
+New York    <span class="number">16</span>
+Helsinki     <span class="number">7</span>
+dtype: int64
+
+<span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add_custom_values</span><span class="params">(x, **kwargs)</span>:</span>
+<span class="meta">... </span>    <span class="keyword">for</span> month <span class="keyword">in</span> kwargs:
+<span class="meta">... </span>        x += kwargs[month]
+<span class="meta">... </span>    <span class="keyword">return</span> x
+
+<span class="meta">&gt;&gt;&gt; </span>s.apply(add_custom_values, june=<span class="number">30</span>, july=<span class="number">20</span>, august=<span class="number">25</span>)
+London      <span class="number">95</span>
+New York    <span class="number">96</span>
+Helsinki    <span class="number">87</span>
+dtype: int64
+
+<span class="meta">&gt;&gt;&gt; </span>s.apply(np.log)
+London      <span class="number">2.995732</span>
+New York    <span class="number">3.044522</span>
+Helsinki    <span class="number">2.484907</span>
+dtype: float64
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/11/07/DataFrame注意点小结/" data-id="ck2o1by7o000140t8l8fl8b42"
+         class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+    
+      <a href="/2019/11/05/mySql常用语法汇总/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">mySql常用语法汇总</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+    </div>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/technology.js"></script>
+
+  </div>
+</body>
+</html>
